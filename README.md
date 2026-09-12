@@ -24,8 +24,6 @@ It takes a few seconds and means more than you'd think. If you have an idea for 
 
 Made with love in Macedonia. 🇲🇰
 
-*Новчовек never gives a diagnosis - it prepares you, the doctor decides. In an emergency, call 112.*
-
 ---
 
 ## Македонски
@@ -45,5 +43,3 @@ Made with love in Macedonia. 🇲🇰
 Трае неколку секунди, а значи повеќе отколку што мислиш. Ако имаш идеја што да направиме следно, пиши ни на **zdravo@novcovek.com** - го читаме сето.
 
 Направено со љубов во Македонија. 🇲🇰
-
-*Новчовек никогаш не поставува дијагноза - те подготвува, лекарот одлучува. При итен случај јави се на 112.*
