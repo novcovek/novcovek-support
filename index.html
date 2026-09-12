@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новчовек. Сè за здравјето, на едно место</title>
+<meta name="description" content="Новчовек го собира целото здравје на една адреса, за да не мораш да пребаруваш повеќе. Направено во Македонија. Поддржи нè со еден глас.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Новчовек. Сè за здравјето, на едно место">
+<meta property="og:description" content="Едно место наместо дваесет отворени прозорци. Направено во Македонија. Дај глас.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#000000;
+    --paper:#ECE9E3;
+    --dim:#9A968D;
+    --faint:#5E5B55;
+    --rule:rgba(236,233,227,.13);
+    --soft:rgba(236,233,227,.07);
+
+    --d1:#D9604F; --d2:#8E7CC3; --d3:#E4A13E; --d4:#4C63A8;
+    --d5:#D47AA6; --d6:#5BA37C; --d7:#3FA0A8;
+
+    --pad:clamp(20px,5vw,48px);
+    --col:min(660px,100%);
+    --ease:cubic-bezier(.2,.75,.3,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--ink);color:var(--paper);
+    font-family:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  @media (max-width:520px){body{font-size:16px}}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--paper);outline-offset:3px;border-radius:3px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+  .col{max-width:var(--col)}
+
+  h1,h2{font-weight:300;letter-spacing:-.032em;margin:0}
+  h1{font-size:clamp(2.4rem,7.8vw,4.5rem);line-height:1.02}
+  h2{font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1.1}
+  h3{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;line-height:1.4;margin:0}
+  p{margin:0}
+  .lede{color:var(--dim);font-size:clamp(1.02rem,2.3vw,1.18rem);line-height:1.56;max-width:31em}
+  .note{color:var(--faint);font-size:.9rem;line-height:1.55;max-width:34em}
+
+  .marker{display:flex;gap:12px;align-items:baseline;font-size:.875rem;color:var(--dim);
+    font-weight:500;padding-bottom:14px;margin-bottom:32px;border-bottom:1px solid var(--rule)}
+  .marker .n{color:var(--faint);font-weight:400;font-variant-numeric:tabular-nums}
+
+  .top{padding:22px 0 0;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-weight:600;letter-spacing:-.02em}
+  .pips{display:flex;gap:3px}
+  .pips i{width:5px;height:5px;border-radius:50%;display:block}
+  .top .back{font-size:.875rem;color:var(--dim);text-decoration:none}
+  .top .back:hover{color:var(--paper)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font:inherit;font-weight:600;font-size:1rem;letter-spacing:-.01em;
+    padding:15px 30px;border-radius:999px;border:1px solid transparent;
+    text-decoration:none;cursor:pointer;transition:background-color .18s,border-color .18s,color .18s}
+  .btn-primary{background:var(--paper);color:var(--ink)}
+  .btn-primary:hover{background:#fff}
+  .btn-ghost{border-color:var(--rule)}
+  .btn-ghost:hover{border-color:var(--dim)}
+  .btn-block{width:100%}
+  .btn .up{display:block;transition:transform .22s var(--ease)}
+  .btn:hover .up{transform:translateY(-3px)}
+
+  .hero{padding:clamp(56px,11vh,110px) 0 0}
+  .hero h1{max-width:13ch}
+  .hero h1 .soft{color:var(--faint)}
+
+  .search{margin:38px 0 0;max-width:min(560px,100%)}
+  .search-label{font-size:.82rem;color:var(--faint);margin-bottom:10px}
+  .field{display:flex;align-items:center;gap:13px;border:1px solid var(--rule);
+    border-radius:999px;padding:14px 22px;min-height:54px;
+    transition:opacity .6s ease,transform .6s var(--ease)}
+  .field svg{flex:none;opacity:.45}
+  .qtext{color:var(--dim);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .caret{display:inline-block;width:1.5px;height:1.05em;background:var(--paper);
+    vertical-align:-2px;margin-left:2px;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .search.done .field{opacity:0;transform:translateY(-6px) scale(.98)}
+  .answer{margin-top:-54px;opacity:0;transform:translateY(8px);
+    transition:opacity .6s ease .35s,transform .6s var(--ease) .35s;
+    display:flex;align-items:center;gap:13px;min-height:54px;padding:0 4px;pointer-events:none}
+  .search.done .answer{opacity:1;transform:none;pointer-events:auto}
+  .answer .dots{display:flex;gap:4px}
+  .answer .dots i{width:7px;height:7px;border-radius:50%;display:block}
+  .answer b{font-weight:600;letter-spacing:-.01em}
+
+  .hero .lede{margin-top:34px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+  .hero .note{margin-top:20px}
+
+  .spectrum{display:flex;width:100%;height:5px;margin-top:clamp(52px,8vh,88px)}
+  .spectrum span{flex:1;transform-origin:bottom;animation:rise .6s var(--ease) backwards}
+  @keyframes rise{from{transform:scaleY(0)}}
+
+  .fade{opacity:0;transform:translateY(16px)}
+  .lit .fade{opacity:1;transform:none;transition:opacity .7s ease,transform .7s var(--ease)}
+
+  section.band{padding:clamp(70px,10vh,116px) 0}
+  section.band + section.band{border-top:1px solid var(--soft)}
+  .stack > * + *{margin-top:18px}
+
+  .hint{display:flex;align-items:center;gap:9px;color:var(--faint);font-size:.88rem;margin-top:34px}
+  .hint svg{flex:none;animation:nudge 2.6s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+
+  .doors{margin:14px 0 0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+  .doors li{border-bottom:1px solid var(--rule);opacity:0;transform:translateY(12px)}
+  .doors.on li{opacity:1;transform:none;transition:opacity .55s ease,transform .55s var(--ease)}
+  .doors a{display:grid;grid-template-columns:auto 1fr auto;gap:0 16px;align-items:start;
+    padding:16px 2px;text-decoration:none;transition:padding-left .22s var(--ease)}
+  .doors a:hover{padding-left:9px}
+  .doors .dot{width:9px;height:9px;border-radius:50%;margin-top:9px;transition:transform .22s var(--ease)}
+  .doors a:hover .dot{transform:scale(1.5)}
+  .doors .nm{font-weight:600;letter-spacing:-.01em}
+  .doors .go{color:var(--faint);opacity:0;transform:translateX(-5px);margin-top:6px;
+    transition:opacity .22s ease,transform .22s var(--ease)}
+  .doors a:hover .go,.doors a:focus-visible .go{opacity:1;transform:none}
+  .doors .ds{grid-column:2;color:var(--dim);font-size:.94rem;line-height:1.5;margin-top:2px}
+  .doors-foot{color:var(--dim);font-size:.96rem;margin-top:22px;max-width:44ch}
+
+  /* што сакаш да видиш следно */
+  .ask{margin-top:34px;border:1px solid var(--rule);border-radius:20px;padding:clamp(22px,3.6vw,30px)}
+  .ask p{color:var(--dim);font-size:.95rem;margin-top:8px;max-width:42ch}
+  .ask-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .ask input{flex:1 1 240px;min-width:0;font:inherit;font-size:.97rem;color:var(--paper);
+    background:none;border:1px solid var(--rule);border-radius:999px;padding:13px 20px;
+    transition:border-color .18s}
+  .ask input::placeholder{color:var(--faint)}
+  .ask input:focus{outline:none;border-color:var(--dim)}
+  .ask .btn{padding:13px 26px}
+  .ask .thanks{color:var(--d6);font-size:.92rem;margin-top:14px;display:none}
+  .ask.sent .thanks{display:block}
+  .seeds{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .seed{font:inherit;font-size:.87rem;color:var(--dim);background:none;
+    border:1px solid var(--soft);border-radius:999px;padding:7px 14px;cursor:pointer;
+    transition:border-color .18s,color .18s}
+  .seed:hover{border-color:var(--rule);color:var(--paper)}
+
+  .vote-box{margin-top:40px;border:1px solid var(--rule);border-radius:20px;padding:clamp(24px,4vw,36px)}
+  .steps{margin:0;padding:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:0 14px;
+    padding:12px 0;border-bottom:1px solid var(--soft);align-items:baseline}
+  .steps li:last-child{border-bottom:0;padding-bottom:0}
+  .steps li::before{content:counter(s);color:var(--faint);font-variant-numeric:tabular-nums;font-size:.9rem}
+  .steps span{color:var(--dim);font-size:.97rem}
+  .steps b{color:var(--paper);font-weight:600}
+  .vote-box .btn{margin-top:24px}
+  .ticks{display:flex;gap:7px;margin-bottom:20px}
+  .ticks i{height:3px;flex:1;border-radius:2px;transform-origin:left;transform:scaleX(0)}
+  .vote-box.on .ticks i{transform:scaleX(1);transition:transform .5s var(--ease)}
+
+  .goals{margin:40px 0 0;padding:0;list-style:none}
+  .goals li{display:grid;grid-template-columns:30px 1fr;gap:0 16px;padding:0 0 26px;position:relative;
+    opacity:0;transform:translateY(12px)}
+  .goals.on li{opacity:1;transform:none;transition:opacity .55s ease,transform .55s var(--ease)}
+  .goals li::before{content:"";position:absolute;left:4px;top:19px;bottom:0;width:1px;background:var(--rule)}
+  .goals li:last-child{padding-bottom:0}
+  .goals li:last-child::before{display:none}
+  .goals .mk{width:9px;height:9px;border-radius:50%;margin-top:7px;position:relative;z-index:1}
+  .goals .gt{font-weight:600;letter-spacing:-.01em;line-height:1.45}
+  .goals .gs{color:var(--dim);font-size:.93rem;line-height:1.5;margin-top:3px}
+
+  .never{margin-top:46px;border-top:1px solid var(--rule);padding-top:24px}
+  .never ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px}
+  .never li{color:var(--dim);font-size:.96rem;padding-left:24px;position:relative}
+  .never li::before{content:"";position:absolute;left:0;top:.66em;width:13px;height:1px;background:var(--d1)}
+
+  .close{padding:clamp(78px,12vh,132px) 0;border-top:1px solid var(--soft)}
+  .close .btn-primary{margin-top:30px}
+  .signature{margin-top:38px;padding-top:22px;border-top:1px solid var(--soft);
+    color:var(--dim);font-size:.97rem;line-height:1.6;max-width:38ch}
+  .signature em{font-style:normal;color:var(--paper)}
+
+  footer{border-top:1px solid var(--rule);padding:40px 0 calc(40px + env(safe-area-inset-bottom))}
+  .flinks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px}
+  .flinks a{color:var(--dim);text-decoration:none;font-size:.92rem}
+  .flinks a:hover{color:var(--paper)}
+  .disclaim{margin-top:24px;color:var(--faint);font-size:.85rem;line-height:1.6;max-width:46ch}
+
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;
+    padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,.84);backdrop-filter:blur(14px);border-top:1px solid var(--rule);
+    transform:translateY(115%);transition:transform .3s var(--ease)}
+  .dock.on{transform:none}
+  @media (min-width:781px){.dock{display:none}}
+  body.has-dock{padding-bottom:86px}
+  @media (min-width:781px){body.has-dock{padding-bottom:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+    .fade,.doors li,.goals li,.doors .go{opacity:1;transform:none}
+    .ticks i{transform:scaleX(1)}
+    .search .field{opacity:1;transform:none}
+    .answer{display:none}
+    .dock{display:none}
+    body.has-dock{padding-bottom:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="https://novcovek.com">
+      <span class="pips" aria-hidden="true">
+        <i style="background:var(--d1)"></i><i style="background:var(--d2)"></i><i style="background:var(--d3)"></i><i style="background:var(--d4)"></i><i style="background:var(--d5)"></i><i style="background:var(--d6)"></i><i style="background:var(--d7)"></i>
+      </span>Новчовек
+    </a>
+    <a class="back" href="https://novcovek.com">Отвори ја платформата</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="fade">Сè за здравјето. <span class="soft">На едно место.</span></h1>
+
+    <div class="search fade" id="search" aria-hidden="true">
+      <p class="search-label">Вечерва некој пишува:</p>
+      <div class="field">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="7" cy="7" r="5"/><path d="M11 11l4 4"/>
+        </svg>
+        <span class="qtext" id="q"></span><span class="caret" id="caret"></span>
+      </div>
+      <div class="answer">
+        <span class="dots">
+          <i style="background:var(--d1)"></i><i style="background:var(--d3)"></i><i style="background:var(--d6)"></i><i style="background:var(--d7)"></i>
+        </span>
+        <b>Одговорот е тука. Сиот, на едно место.</b>
+      </div>
+    </div>
+
+    <p class="lede fade">Здравјето е расфрлано. Симптом бараш на форум, исхрана на видео, сон во апликација, а за она што те срами, никаде. Новчовек го собира сето тоа под еден покрив.</p>
+
+    <div class="actions fade">
+      <a class="btn btn-primary" id="cta-top" href="#" target="_blank" rel="noopener">
+        <svg class="up" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V2.5M2.8 6.7L7 2.5l4.2 4.2"/></svg>
+        Дај глас за Новчовек
+      </a>
+      <a class="btn btn-ghost" href="https://novcovek.com">Прво види што градиме</a>
+    </div>
+    <p class="note fade">Направено во Македонија, на македонски, за луѓе што го знаат срамот од прашањето. Почнуваме од тука и не застануваме тука.</p>
+  </div>
+
+  <div class="spectrum" aria-hidden="true">
+    <span style="background:var(--d1);animation-delay:0ms"></span>
+    <span style="background:var(--d2);animation-delay:60ms"></span>
+    <span style="background:var(--d3);animation-delay:120ms"></span>
+    <span style="background:var(--d4);animation-delay:180ms"></span>
+    <span style="background:var(--d5);animation-delay:240ms"></span>
+    <span style="background:var(--d6);animation-delay:300ms"></span>
+    <span style="background:var(--d7);animation-delay:360ms"></span>
+  </div>
+</header>
+
+<main>
+
+<section class="band" id="ideja">
+  <div class="wrap">
+    <p class="marker"><span class="n">01</span> Идејата</p>
+    <div class="col stack">
+      <h2>Едно место наместо дваесет отворени прозорци.</h2>
+      <p class="lede">Здравјето не е поделено онака како што е поделен интернетот. Еден лош месец ретко живее во една специјалност. Прво се кршат ноќите, потоа исхраната, потоа нервите, а телото почнува да испраќа писма.</p>
+      <p class="lede">Затоа Новчовек има седум врати, именувани според тоа што го чувствуваш, не според тоа како се вика во клиника. Влегуваш под прекар што сам си го измислуваш. Луѓето што одговараат стојат со вистинско име. Твоето не го дознава никој.</p>
+    </div>
+
+    <p class="hint col">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h9M7.5 3.5L11 7l-3.5 3.5"/></svg>
+      Кликни на која било врата подолу и влегуваш директно во неа.
+    </p>
+
+    <ul class="doors col" id="doors">
+      <li><a href="https://novcovek.com/health"><span class="dot" style="background:var(--d1)"></span><span class="nm">Лекарска соба</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Нешто не е во ред и не знаеш што да правиш. Те подготвува за разговорот со лекар.</span></a></li>
+      <li><a href="https://novcovek.com/mental"><span class="dot" style="background:var(--d2)"></span><span class="nm">Ментално здравје</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Не прирачник за читање, туку придружник што оди со тебе, ден по ден.</span></a></li>
+      <li><a href="https://novcovek.com/vitality"><span class="dot" style="background:var(--d3)"></span><span class="nm">Движење и исхрана</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Твоите денови, твојата опрема, твојата храна. План што навистина можеш да го следиш.</span></a></li>
+      <li><a href="https://novcovek.com/sleep"><span class="dot" style="background:var(--d4)"></span><span class="nm">Сон и енергија</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Градено наназад од часот кога мораш да станеш. Мерено, не погодувано.</span></a></li>
+      <li><a href="https://novcovek.com/reproductive"><span class="dot" style="background:var(--d5)"></span><span class="nm">Репродуктивно здравје</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Избираш каде си во животот и целото место се преуредува околу тебе.</span></a></li>
+      <li><a href="https://novcovek.com/relationships"><span class="dot" style="background:var(--d6)"></span><span class="nm">Односи и семејство</span><span class="go" aria-hidden="true">Влези</span><span class="ds">Не категории, туку ситуации. Обични реченици што ќе ги препознаеш веднаш.</span></a></li>
+      <li><a href="https://novcovek.com/prevention"><span class="dot" style="background:var(--d7)"></span><span class="nm">Превенција и скрининг</span><span class="go" aria-hidden="true">Влези</span><span class="ds">За луѓе што не се болни и имаат намера така да останат. Години нанапред.</span></a></li>
+    </ul>
+
+    <p class="doors-foot col">Ова се првите седум, не и последните. Следат кожа, заби, алергии, зависности, детско здравје, стареење. Целта е ништо да не остане надвор.</p>
+
+    <div class="ask col" id="ask">
+      <h3>Што сакаш да видиш следно?</h3>
+      <p>Ако ти недостига нешто, напиши го. Списокот го градиме според тоа што луѓето навистина го бараат.</p>
+      <div class="seeds" id="seeds">
+        <button class="seed" type="button">Кожа и коса</button>
+        <button class="seed" type="button">Заби</button>
+        <button class="seed" type="button">Детско здравје</button>
+        <button class="seed" type="button">Алергии</button>
+        <button class="seed" type="button">Хронични болести</button>
+      </div>
+      <div class="ask-row">
+        <input id="ask-input" type="text" placeholder="Напиши што ти недостига" aria-label="Што сакаш да видиш следно">
+        <button class="btn btn-ghost" id="ask-send" type="button">Испрати</button>
+      </div>
+      <p class="thanks">Примено. Фала што одвои време.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="glas">
+  <div class="wrap">
+    <p class="marker"><span class="n">02</span> Поддршката</p>
+    <div class="col stack">
+      <h2>Сè што бараме е еден глас.</h2>
+      <p class="lede">Новчовек е во натпревар и гласовите од луѓе носат дел од оценката. Не мал дел. Секој глас нè доближува до тоа ова да престане да биде проект и да стане нешто што останува.</p>
+    </div>
+
+    <div class="vote-box col" id="votebox">
+      <div class="ticks" aria-hidden="true">
+        <i style="background:var(--d1)"></i><i style="background:var(--d2)"></i><i style="background:var(--d3)"></i>
+        <i style="background:var(--d4)"></i><i style="background:var(--d5)"></i><i style="background:var(--d6)"></i><i style="background:var(--d7)"></i>
+      </div>
+      <h3>Три чекори, помалку од минута</h3>
+      <ol class="steps">
+        <li><span>Копчето подолу те носи директно на страницата на Новчовек во натпреварот.</span></li>
+        <li><span>Кликни на <b>like</b>. Ќе те побара да се најавиш.</span></li>
+        <li><span>Најави се со Google или со е-пошта и гласот е запишан. Толку.</span></li>
+      </ol>
+      <a class="btn btn-primary" id="cta-vote" href="#" target="_blank" rel="noopener">
+        <svg class="up" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V2.5M2.8 6.7L7 2.5l4.2 4.2"/></svg>
+        Гласај сега
+      </a>
+    </div>
+
+    <p class="note col" style="margin-top:26px">Ако имаш уште десет секунди, испрати го линкот на еден човек. Тоа вреди исто колку и гласот.</p>
+  </div>
+</section>
+
+<section class="band" id="celi">
+  <div class="wrap">
+    <p class="marker"><span class="n">03</span> Целта</p>
+    <div class="col stack">
+      <h2>Да не мораш да пребаруваш. Никогаш повеќе.</h2>
+      <p class="lede">Крајот на оваа приказна е едноставен. Го отвораш Новчовек и таму е сè. Секој аспект од здравјето, без празно место меѓу нив.</p>
+    </div>
+
+    <ol class="goals col" id="goals">
+      <li><span class="mk" style="background:var(--d1)"></span><div>
+        <div class="gt">Целото здравје, без празнини</div>
+        <p class="gs">Од првиот симптом до последната контрола. Ништо да не остане надвор и ништо да не биде на друго место.</p></div></li>
+      <li><span class="mk" style="background:var(--d3)"></span><div>
+        <div class="gt">Одговор од човек</div>
+        <p class="gs">Лекари, терапевти и тренери со вистинско име и презиме. Ти остануваш прекар.</p></div></li>
+      <li><span class="mk" style="background:var(--d6)"></span><div>
+        <div class="gt">Сè на македонски</div>
+        <p class="gs">Напишано онака како што се зборува тука, не преведено од туѓ прирачник.</p></div></li>
+      <li><span class="mk" style="background:var(--d7)"></span><div>
+        <div class="gt">И она што е локално</div>
+        <p class="gs">Каде да одиш, што ти треба од упат, колку се чека. Работите што обично се дознаваат преку роднина во болница.</p></div></li>
+      <li><span class="mk" style="background:var(--d2)"></span><div>
+        <div class="gt">Анонимно, и тоа не по избор</div>
+        <p class="gs">Кај нас прашањето за сопственото здравје има сведоци. Тука нема ниту еден.</p></div></li>
+      <li><span class="mk" style="background:var(--d5)"></span><div>
+        <div class="gt">Од локално кон глобално</div>
+        <p class="gs">Прво Македонија, потоа регионот, потоа сите други што го делат истиот молк. Ако проработи тука, проработува секаде.</p></div></li>
+    </ol>
+
+    <div class="never col">
+      <h3>А ова нема да се случи</h3>
+      <ul>
+        <li>Реклами и спонзорирани препораки.</li>
+        <li>Продажба или отстапување на твоите податоци.</li>
+        <li>Прашање за твоето вистинско име.</li>
+        <li>Дијагноза. Новчовек те подготвува, лекарот одлучува.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap col">
+    <h2>Ако ти се допаѓа идејата, дај ѝ глас.</h2>
+    <p class="lede" style="margin-top:18px">Новчовек го градиме овде, за луѓето овде, и допрва почнуваме. Секој глас ни помага да го доградиме до крај и да го однесеме подалеку од границите.</p>
+    <a class="btn btn-primary" id="cta-bottom" href="#" target="_blank" rel="noopener">
+      <svg class="up" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V2.5M2.8 6.7L7 2.5l4.2 4.2"/></svg>
+      Гласај за Новчовек
+    </a>
+    <p class="signature">Зад ова стои мал тим што го гради ноќе, меѓу другите обврски. Гласот значи повеќе отколку што мислиш. <em>Благодариме.</em></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap col">
+    <a class="brand" href="https://novcovek.com">
+      <span class="pips" aria-hidden="true">
+        <i style="background:var(--d1)"></i><i style="background:var(--d2)"></i><i style="background:var(--d3)"></i><i style="background:var(--d4)"></i><i style="background:var(--d5)"></i><i style="background:var(--d6)"></i><i style="background:var(--d7)"></i>
+      </span>Новчовек
+    </a>
+    <div class="flinks">
+      <a href="https://novcovek.com">Почетна</a>
+      <a href="https://novcovek.com/why">Зошто постои ова</a>
+      <a href="https://novcovek.com/blog">Блог</a>
+      <a href="https://novcovek.com/contact">Контакт</a>
+    </div>
+    <p class="disclaim">Новчовек никогаш не поставува дијагноза. При итен случај јави се на 112. Направено во Македонија.</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <a class="btn btn-primary btn-block" id="cta-dock" href="#" target="_blank" rel="noopener">
+    <svg class="up" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V2.5M2.8 6.7L7 2.5l4.2 4.2"/></svg>
+    Дај глас за Новчовек
+  </a>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   ПОДЕСУВАЊА
+   ════════════════════════════════════════ */
+const VOTE_URL = "https://app.emergent.sh/showcase/builderfest-kevin/8a1eb963-2c6a-4c57-a77b-98e6c17d5719";
+const FEEDBACK_EMAIL = "zdravo@novcovek.com";   // каде да стигне предлогот
+/* ════════════════════════════════════════ */
+
+(function () {
+  const $  = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  ["#cta-top", "#cta-vote", "#cta-bottom", "#cta-dock"].forEach(id => { $(id).href = VOTE_URL; });
+
+  requestAnimationFrame(() => {
+    $$(".hero .fade").forEach((el, i) => { el.style.transitionDelay = (i * 70) + "ms"; });
+    document.body.classList.add("lit");
+  });
+
+  /* пишување во полето за пребарување */
+  if (!reduced) {
+    const queries = [
+      "зошто не можам да заспијам",
+      "дали е ова нормално",
+      "како да му кажам дека…",
+      "што значи овој наод"
+    ];
+    const q = $("#q"), box = $("#search");
+    let qi = 0, ci = 0, del = false;
+
+    function tick() {
+      const word = queries[qi];
+      q.textContent = word.slice(0, ci);
+
+      if (!del && ci === word.length) {
+        if (qi === queries.length - 1) {
+          setTimeout(() => { box.classList.add("done"); $("#caret").style.display = "none"; }, 1100);
+          return;
+        }
+        del = true;
+        return setTimeout(tick, 1250);
+      }
+      if (del && ci === 0) { del = false; qi++; return setTimeout(tick, 260); }
+      ci += del ? -1 : 1;
+      setTimeout(tick, del ? 26 : 62);
+    }
+    setTimeout(tick, 900);
+  }
+
+  /* што сакаш да видиш следно */
+  const askBox = $("#ask"), askInput = $("#ask-input");
+  $$("#seeds .seed").forEach(b => {
+    b.addEventListener("click", () => {
+      askInput.value = b.textContent.trim();
+      askInput.focus();
+    });
+  });
+  const send = () => {
+    const text = askInput.value.trim();
+    if (!text) { askInput.focus(); return; }
+    window.location.href = "mailto:" + FEEDBACK_EMAIL +
+      "?subject=" + encodeURIComponent("Предлог за Новчовек") +
+      "&body=" + encodeURIComponent(text);
+    askBox.classList.add("sent");
+  };
+  $("#ask-send").addEventListener("click", send);
+  askInput.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
+
+  /* откривање при скролање */
+  const stagger = (sel, step) => {
+    $$(sel).forEach((n, i) => { n.style.transitionDelay = (i * step) + "ms"; });
+  };
+  stagger("#doors li", 55);
+  stagger("#goals li", 65);
+  stagger("#votebox .ticks i", 45);
+
+  if ("IntersectionObserver" in window && !reduced) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    ["#doors", "#goals", "#votebox"].forEach(id => io.observe($(id)));
+  } else {
+    ["#doors", "#goals", "#votebox"].forEach(id => $(id).classList.add("on"));
+  }
+
+  /* лепливо копче */
+  const dock = $("#dock");
+  if (!reduced && "IntersectionObserver" in window) {
+    document.body.classList.add("has-dock");
+    new IntersectionObserver(([e]) => {
+      dock.classList.toggle("on", !e.isIntersecting);
+    }, { rootMargin: "-140px 0px 0px 0px" }).observe($(".hero .actions"));
+  }
+})();
+</script>
+</body>
+</html>
