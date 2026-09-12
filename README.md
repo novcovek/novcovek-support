@@ -1,77 +1,49 @@
-# NovCovek Support
+# Новчовек
 
 **[English](#english) · [Македонски](#македонски)**
 
-Live site / Активна страница: **https://support.novcovek.com**
+🔗 **[support.novcovek.com](https://support.novcovek.com)**
 
 ---
 
 ## English
 
-Support website for **NovCovek**, a centralized healthcare platform. This repository contains the static site served at `support.novcovek.com`.
+Hi 👋
 
-### Repository structure
+Looking something up about your health usually means twenty open tabs, three contradicting answers, and a phone call to that one relative who works at a hospital. We thought it could be gentler than that.
 
-| File | Purpose |
-|---|---|
-| `index.html` | The support page itself |
-| `CNAME` | Tells GitHub Pages which custom domain serves this repo |
-| `README.md` | This file |
+Новчовек puts it all in one place — written in Macedonian, the way people actually speak here, answered by real doctors and therapists. You stay anonymous. No ads, no one selling your data, no one asking for your real name.
 
-### Deployment
+We're a small team building this at night, between everything else. It's not finished yet, and honestly it only gets finished if people want it to.
 
-The site is published with **GitHub Pages** from the `main` branch. Any commit pushed to `main` redeploys automatically — usually within a minute. Deployment status is visible under the repository's **Actions** tab.
+### 💛 Support us
 
-DNS is handled at the registrar with a single `CNAME` record pointing `support` at `novcovek.github.io`.
+**[→ Vote for Новчовек](https://app.emergent.sh/showcase/builderfest-kevin/8a1eb963-2c6a-4c57-a77b-98e6c17d5719)**
 
-> Do not delete the `CNAME` file. Removing it detaches the custom domain and the site reverts to the default `github.io` address.
+It takes a few seconds and means more than you'd think. If you have an idea for what we should build next, write to us at **zdravo@novcovek.com** — we read everything.
 
-### Running it locally
+Made with love in Macedonia. 🇲🇰
 
-```bash
-git clone https://github.com/novcovek/novcovek-support.git
-cd novcovek-support
-python3 -m http.server 8000
-```
-
-Then open `http://localhost:8000` in a browser. Opening `index.html` directly as a file also works for simple changes.
-
-### Contributing
-
-Small fixes can be made directly through the GitHub web editor. For anything larger, open a branch and a pull request so the change can be reviewed before it goes live.
+*Новчовек never gives a diagnosis — it prepares you, the doctor decides. In an emergency, call 112.*
 
 ---
 
 ## Македонски
 
-Веб-страница за поддршка на **NovCovek**, централизирана здравствена платформа. Ова складиште ја содржи статичната страница што се објавува на `support.novcovek.com`.
+Здраво 👋
 
-### Структура на складиштето
+Кога бараш нешто за своето здравје, обично завршуваш со дваесет отворени прозорци, три различни одговори и повик до оној роднина што работи во болница. Мислевме дека може да биде и поубаво од тоа.
 
-| Датотека | Намена |
-|---|---|
-| `index.html` | Самата страница за поддршка |
-| `CNAME` | Му кажува на GitHub Pages кој приспособен домен ја опслужува страницата |
-| `README.md` | Оваа датотека |
+Новчовек го собира сето тоа на едно место — напишано на македонски, онака како што се зборува тука, со одговори од вистински лекари и терапевти. Ти остануваш анонимен. Без реклами, без продавање на твоите податоци, без прашање за твоето вистинско име.
 
-### Објавување
+Мал тим сме и го градиме ова ноќе, меѓу сè друго. Не е готово, и искрено — ќе биде готово само ако луѓето го сакаат.
 
-Страницата се објавува преку **GitHub Pages** од гранката `main`. Секоја промена испратена на `main` автоматски се објавува повторно — обично во рок од една минута. Статусот на објавувањето може да се види во делот **Actions**.
+### 💛 Поддржи нè
 
-DNS-от е поставен кај регистраторот со еден `CNAME` запис што го насочува `support` кон `novcovek.github.io`.
+**[→ Гласај за Новчовек](https://app.emergent.sh/showcase/builderfest-kevin/8a1eb963-2c6a-4c57-a77b-98e6c17d5719)**
 
-> Не ја бришете датотеката `CNAME`. Нејзиното отстранување го одврзува приспособениот домен и страницата се враќа на стандардната `github.io` адреса.
+Трае неколку секунди, а значи повеќе отколку што мислиш. Ако имаш идеја што да направиме следно, пиши ни на **zdravo@novcovek.com** — го читаме сето.
 
-### Локално стартување
+Направено со љубов во Македонија. 🇲🇰
 
-```bash
-git clone https://github.com/novcovek/novcovek-support.git
-cd novcovek-support
-python3 -m http.server 8000
-```
-
-Потоа отворете `http://localhost:8000` во прелистувач. За едноставни промени може и директно да се отвори `index.html`.
-
-### Придонесување
-
-Ситните измени може да се направат директно преку веб-уредувачот на GitHub. За поголеми промени, отворете нова гранка и pull request за да може измената да се прегледа пред да биде објавена.
+*Новчовек никогаш не поставува дијагноза — те подготвува, лекарот одлучува. При итен случај јави се на 112.*
